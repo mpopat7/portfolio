@@ -5,6 +5,7 @@ import type { Project } from "@/data/content";
 import { cn } from "@/lib/utils";
 
 export function ProjectLink({ href, label }: { href: string; label: string }) {
+  if (!href) return null;
   if (href.startsWith("[")) {
     return (
       <span className="font-mono text-xs text-smoke/50" title="Placeholder — add the real link in data/content.ts">

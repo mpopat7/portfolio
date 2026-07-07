@@ -15,6 +15,9 @@ export default function Research() {
           text={research.role}
           className="text-3xl font-semibold tracking-tight md:text-5xl"
         />
+        <p className="mt-3 font-mono text-xs uppercase tracking-widest text-smoke">
+          {research.dates}
+        </p>
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

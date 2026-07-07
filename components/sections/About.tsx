@@ -44,15 +44,23 @@ export default function About() {
         text={about.heading}
         className="text-5xl font-semibold tracking-tight md:text-7xl"
       />
-      <div
-        ref={ref}
-        className="mt-12 text-2xl font-medium leading-snug md:text-4xl md:leading-snug"
-      >
-        {about.body.split(" ").map((word, i) => (
-          <span key={i} data-word className="inline">
-            {word}{" "}
-          </span>
-        ))}
+      <div className="mt-12 grid gap-10 md:grid-cols-[260px,1fr] md:items-start">
+        <img
+          src={about.photo}
+          alt="Milen Popat"
+          className="w-52 rounded-3xl border border-line md:w-full"
+          loading="lazy"
+        />
+        <div
+          ref={ref}
+          className="text-2xl font-medium leading-snug md:text-3xl md:leading-snug"
+        >
+          {about.body.split(" ").map((word, i) => (
+            <span key={i} data-word className="inline">
+              {word}{" "}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
