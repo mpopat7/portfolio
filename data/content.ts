@@ -22,6 +22,7 @@ export const nav = [
   { id: "projects", label: "Projects" },
   { id: "research", label: "Research" },
   { id: "experience", label: "Experience" },
+  { id: "leadership", label: "Leadership" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -189,8 +190,17 @@ export const experience: ExperienceEntry[] = [
   },
 ];
 
-export const extras = {
-  heading: "Case competitions & campus",
+export type ListSectionContent = {
+  id: string;
+  eyebrow: string;
+  heading: string;
+  items: { title: string; note: string }[];
+};
+
+export const caseComps: ListSectionContent = {
+  id: "competitions",
+  eyebrow: "Case Competitions",
+  heading: "Competing with data.",
   items: [
     {
       title: "Epsilon Nu Tau x Cintas Case Competition",
@@ -204,17 +214,29 @@ export const extras = {
       title: "Hoosier Consulting Network Case Competition",
       note: "Top 6 of 100+ teams with a hospital strategy on physician retention.",
     },
+  ],
+};
+
+export const leadership: ListSectionContent = {
+  id: "leadership",
+  eyebrow: "Leadership & Development",
+  heading: "Beyond the classroom.",
+  items: [
     {
       title: "Epsilon Nu Tau Professional Fraternity",
-      note: "Selected 1 of 27 from 400 applicants to the entrepreneurship fraternity.",
+      note: "Selected 1 of 27 from 400 applicants; 70 formal interviews and a business launch project that raised $1,000 for charity.",
+    },
+    {
+      title: "Goldman Sachs Possibilities Series",
+      note: "Selected for the competitive first-year career program.",
     },
     {
       title: "K204 Peer Tutor, Kelley School of Business",
       note: "Excel and Access lab tutor for a 30-student honors section.",
     },
     {
-      title: "Goldman Sachs Possibilities Series",
-      note: "Selected for the competitive first-year career program.",
+      title: "Business Analytics Club at Kelley",
+      note: "Analytical models and automated insights with advanced Excel, Python, and generative AI tools.",
     },
     {
       title: "Claude Builders Club",
