@@ -35,16 +35,8 @@ export const hero = {
 export const about = {
   heading: "Builder first.",
   // Rendered word-by-word with a scroll-scrubbed brightness reveal.
-  body: "I grew up in Houston and got my start digitizing paperwork for a Texas urgent care clinic. Now it's ML research and client data work at Kelley. Before any of that I was a drum captain: eight years of tabla and a marching band drumline taught me that reps beat talent. Away from the terminal I produce music in Logic Pro, lift, and live and die with the Detroit Lions.",
+  body: "My name is Milen and I grew up in Houston. I got into ML from the business side: digitizing paperwork for an urgent care clinic, building dashboards for a Google partner, and following the data work until it turned into research. Away from school I produce music in Logic Pro, lift, and live and die with the Detroit Lions.",
   photo: "/headshot.jpg",
-  interests: [
-    "Music production (Logic Pro)",
-    "Tabla",
-    "Weightlifting",
-    "Detroit Lions",
-    "Don Toliver",
-    "The Flash",
-  ],
 };
 
 export type SkillGroup = {

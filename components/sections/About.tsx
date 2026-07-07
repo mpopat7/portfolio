@@ -51,27 +51,15 @@ export default function About() {
           className="w-52 rounded-3xl border border-line md:w-full"
           loading="lazy"
         />
-        <div>
-          <div
-            ref={ref}
-            className="text-2xl font-medium leading-snug md:text-3xl md:leading-snug"
-          >
-            {about.body.split(" ").map((word, i) => (
-              <span key={i} data-word className="inline">
-                {word}{" "}
-              </span>
-            ))}
-          </div>
-          <ul className="mt-8 flex flex-wrap gap-2">
-            {about.interests.map((interest) => (
-              <li
-                key={interest}
-                className="rounded-full border border-line px-3 py-1 font-mono text-xs text-smoke"
-              >
-                {interest}
-              </li>
-            ))}
-          </ul>
+        <div
+          ref={ref}
+          className="text-2xl font-medium leading-snug md:text-3xl md:leading-snug"
+        >
+          {about.body.split(" ").map((word, i) => (
+            <span key={i} data-word className="inline">
+              {word}{" "}
+            </span>
+          ))}
         </div>
       </div>
     </section>
