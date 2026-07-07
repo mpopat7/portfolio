@@ -9,21 +9,18 @@ import PinnedSection from "@/components/PinnedSection";
 
 function SkillCard({ group, index }: { group: SkillGroup; index: number }) {
   return (
-    <div data-parallax className="w-[75vw] shrink-0 md:w-[400px]">
-      <div className="flex h-[52vh] min-h-[360px] flex-col justify-between rounded-3xl border border-line bg-coal p-8">
-        <div>
-          <span className="font-mono text-sm text-ember">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <h3 className="mt-4 text-2xl font-semibold tracking-tight">
-            {group.title}
-          </h3>
-          <p className="mt-2 text-sm text-smoke">{group.blurb}</p>
-        </div>
-        <ul className="space-y-2">
+    <div data-parallax className="w-[62vw] shrink-0 md:w-[270px]">
+      <div className="rounded-2xl border border-line bg-coal p-6">
+        <span className="font-mono text-xs text-ember">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <h3 className="mt-2 text-lg font-semibold tracking-tight">
+          {group.title}
+        </h3>
+        <ul className="mt-4 space-y-1.5">
           {group.items.map((item) => (
-            <li key={item} className="flex items-center gap-3 text-smoke">
-              <span className="h-1 w-1 rounded-full bg-ember" />
+            <li key={item} className="flex items-center gap-2.5 text-sm text-smoke">
+              <span className="h-1 w-1 shrink-0 rounded-full bg-ember" />
               {item}
             </li>
           ))}
@@ -75,7 +72,7 @@ export default function Skills() {
       });
 
       gsap.utils.toArray<HTMLElement>("[data-parallax]", track).forEach((el, i) => {
-        const drift = i % 2 === 0 ? -36 : 36;
+        const drift = i % 2 === 0 ? -20 : 20;
         gsap.fromTo(
           el,
           { y: -drift },
@@ -109,10 +106,10 @@ export default function Skills() {
   }
 
   return (
-    <PinnedSection id="skills" ref={sectionRef} height="380vh">
-      <div className="flex h-full flex-col justify-center gap-12">
+    <PinnedSection id="skills" ref={sectionRef} height="240vh">
+      <div className="flex h-full flex-col justify-center gap-10">
         <SkillsHeader />
-        <div ref={trackRef} className="flex items-center gap-8 pl-6 md:pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]">
+        <div ref={trackRef} className="flex items-start gap-5 pl-6 md:pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]">
           {skillGroups.map((group, i) => (
             <SkillCard key={group.title} group={group} index={i} />
           ))}

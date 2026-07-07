@@ -29,31 +29,36 @@ export const hero = {
   eyebrow: "Based in Houston, Texas",
   name: "Milen Popat",
   tagline:
-    "I build data pipelines, RAG systems, and ML experiments that make it past the notebook. Information Systems & Business Analytics at Indiana University's Kelley School of Business, with a CS minor.",
+    "Information Systems & Business Analytics at Indiana University's Kelley School of Business, with a CS minor.",
 };
 
 export const about = {
   heading: "Builder first.",
   // Rendered word-by-word with a scroll-scrubbed brightness reveal.
-  body: "I started shipping before I started school: dashboards for an urgent care clinic in Texas, ETL pipelines for a Google partner, research code for a NeurIPS-track fellowship, and a rack of local AI hardware at home. I like messy problems, measurable results, and tools that outlive the demo.",
+  body: "I grew up in Houston and got my start digitizing paperwork for a Texas urgent care clinic. Now it's ML research and client data work at Kelley. Before any of that I was a drum captain: eight years of tabla and a marching band drumline taught me that reps beat talent. Away from the terminal I produce music in Logic Pro, lift, and live and die with the Detroit Lions.",
   photo: "/headshot.jpg",
+  interests: [
+    "Music production (Logic Pro)",
+    "Tabla",
+    "Weightlifting",
+    "Detroit Lions",
+    "Don Toliver",
+    "The Flash",
+  ],
 };
 
 export type SkillGroup = {
   title: string;
-  blurb: string;
   items: string[];
 };
 
 export const skillGroups: SkillGroup[] = [
   {
     title: "Languages",
-    blurb: "The core toolkit everything else is built on.",
     items: ["Python", "SQL", "TypeScript", "JavaScript", "Java", "HTML/CSS"],
   },
   {
     title: "Analysis & Visualization",
-    blurb: "Turning raw tables into decisions.",
     items: [
       "Excel (Power Query, Power Pivot, VBA)",
       "Power BI",
@@ -63,7 +68,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "ML & Deep Learning",
-    blurb: "Fundamentals before frameworks.",
     items: [
       "Probability & statistics",
       "Gradient descent",
@@ -72,22 +76,18 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "AI Engineering",
-    blurb: "Agent systems that hold up outside a notebook.",
     items: ["LangGraph", "Qdrant", "LiteLLM", "RAG & MCP", "Claude & Gemini APIs"],
   },
   {
     title: "Local Models & Infra",
-    blurb: "If it can run on my own hardware, it does.",
     items: ["Ollama", "Home inference server", "Raspberry Pi 5", "SSH & networking"],
   },
   {
     title: "Web & Shipping",
-    blurb: "From repo to production.",
     items: ["Next.js", "React", "Vercel", "Git"],
   },
   {
     title: "Automation",
-    blurb: "Workflows that run while I sleep.",
     items: ["n8n", "AI agents", "Python ETL (Apollo API)"],
   },
 ];
@@ -139,7 +139,7 @@ export const projects: Project[] = [
     name: "Gallstone Ultrasound Classifier",
     tagline: "Machine learning on real clinical reports.",
     description:
-      "A Python machine-learning model prototyped in Google Colab for Precise Urgent Care that analyzes ultrasound reports to detect and classify gallstones, reaching 73% classification accuracy on the available report data. Internal clinical work, so no public repo.",
+      "A Python machine-learning model prototyped in Google Colab for Precise Urgent Care that analyzes ultrasound reports to detect and classify gallstones, reaching 73% classification accuracy on the available report data.",
     tech: ["Python", "Google Colab"],
     github: "",
   },
@@ -151,37 +151,13 @@ export const projects: Project[] = [
     tech: ["Python", "MCP", "Obsidian"],
     github: "https://github.com/mpopat7/obsidian-brain",
   },
-  {
-    name: "Home Lab / Local AI Server",
-    tagline: "A personal inference stack, from bare metal up.",
-    description:
-      "An ASUS NUC with 128GB of unified memory running Ollama as a personal inference server, plus a Raspberry Pi 5 configured from scratch: SSH, local models, and networked storage. This is the infrastructure the other projects run on.",
-    tech: ["Ollama", "Ubuntu", "Raspberry Pi OS", "Networking"],
-    github: "",
-  },
-  {
-    name: "Web Content Extractor",
-    tagline: "[ONE-LINE DESCRIPTION]",
-    description:
-      "A tool that pulls clean, structured content out of messy web pages. [Add what it extracts and what it feeds into]",
-    tech: ["[TECH STACK]"],
-    github: "[GITHUB LINK]",
-  },
-  {
-    name: "n8n + AI Agent Automations",
-    tagline: "[ONE-LINE DESCRIPTION]",
-    description:
-      "Automations that wire AI agents into real workflows with n8n: triggers, tool calls, and hand-offs that run unattended. [Add one or two concrete automations and what they save]",
-    tech: ["n8n", "AI agents"],
-    github: "[GITHUB LINK]",
-  },
 ];
 
 export const research = {
   eyebrow: "Research",
   role: "AI Research Fellow · Algoverse",
   dates: "June 2026 – Present",
-  body: "Selected for a 12-week NeurIPS-track research cohort, working under Dr. Taoran Ji, former Director of Machine Learning at Moody's Analytics. Current work: a pipeline that reconstructs 3D joint kinematics from smartphone video (OpenCap) to classify neuromuscular disease, engineering interpretable movement features across 129 subjects and 9 clinical tasks. Preliminary benchmarks reach 82% accuracy against 50% for standard clinical timed tests.",
+  body: "Selected for Algoverse's competitive 12-week research cohort, building toward a paper targeted at a top ML conference under a PhD mentor. Current work: a pipeline that reconstructs 3D joint kinematics from smartphone video (OpenCap) to classify neuromuscular disease, engineering interpretable movement features across 129 subjects and 9 clinical tasks. Preliminary benchmarks reach 82% accuracy against 50% for standard clinical timed tests.",
   focus: [
     "Transformer architectures",
     "Scaling laws",
