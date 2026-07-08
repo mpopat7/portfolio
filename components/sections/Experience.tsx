@@ -1,68 +1,68 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll } from "framer-motion";
-import { experience } from "@/data/content";
-import RevealText from "@/components/RevealText";
+import { motion } from "framer-motion";
+import { work } from "@/data/content";
+import Eyebrow from "@/components/Eyebrow";
 
 export default function Experience() {
-  const listRef = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-
-  // The timeline's spine draws in, scrubbed to scroll position.
-  const { scrollYProgress } = useScroll({
-    target: listRef,
-    offset: ["start 0.8", "end 0.5"],
-  });
-
   return (
-    <section id="experience" className="mx-auto max-w-4xl px-6 py-32">
-      <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-ember">
-        Experience
-      </p>
-      <RevealText
-        text="Where I've worked."
-        className="text-4xl font-semibold tracking-tight md:text-6xl"
-      />
+    <section id="work" className="border-t border-line">
+      <div className="mx-auto max-w-6xl px-6 py-28">
+        <Eyebrow>{work.eyebrow}</Eyebrow>
+        <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+          {work.heading}
+        </h2>
+        <p className="mt-6 max-w-md leading-relaxed text-smoke">{work.sub}</p>
 
-      <div ref={listRef} className="relative mt-16">
-        <div aria-hidden className="absolute bottom-0 left-[5px] top-0 w-px bg-line" />
-        <motion.div
-          aria-hidden
-          className="absolute left-[5px] top-0 w-px origin-top bg-ember"
-          style={{
-            height: "100%",
-            scaleY: reduce ? 1 : scrollYProgress,
-          }}
-        />
-
-        <ol className="space-y-16">
-          {experience.map((entry, i) => (
-            <motion.li
-              key={entry.org}
-              initial={{ opacity: 0, x: reduce ? 0 : 24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "0px 0px -15% 0px" }}
-              transition={{ duration: 0.7, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className="relative pl-12"
+        <div className="mt-14">
+          {work.entries.map((entry) => (
+            <motion.article
+              key={`${entry.role}-${entry.org}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+              transition={{ duration: 0.5 }}
+              className="grid gap-4 border-t border-line py-10 md:grid-cols-[200px,1fr] md:gap-10"
             >
-              <span
-                aria-hidden
-                className="absolute left-0 top-2 h-[11px] w-[11px] rounded-full border-2 border-ember bg-night"
-              />
-              <p className="font-mono text-xs uppercase tracking-widest text-smoke">
-                {entry.dates}
-              </p>
-              <h3 className="mt-2 text-2xl font-semibold tracking-tight">
-                {entry.role}
-              </h3>
-              <p className="mt-1 text-smoke">{entry.org}</p>
-              <p className="mt-3 max-w-xl leading-relaxed text-smoke/80">
-                {entry.description}
-              </p>
-            </motion.li>
+              <div className="font-mono text-xs leading-relaxed text-smoke">
+                <p className="flex items-center gap-2 text-paper">
+                  {entry.current && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-ember" />
+                  )}
+                  {entry.dates}
+                </p>
+                <p className="mt-1 uppercase tracking-wider text-smoke/70">
+                  {entry.location}
+                </p>
+                <p className="uppercase tracking-wider text-smoke/70">
+                  {entry.mode}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
+                  {entry.role}{" "}
+                  <span className="font-normal text-smoke">· {entry.org}</span>
+                </h3>
+                <p className="mt-2 max-w-2xl text-smoke">{entry.summary}</p>
+                <ul className="mt-5 space-y-3">
+                  {entry.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      className="flex max-w-2xl gap-4 text-sm leading-relaxed text-smoke/80"
+                    >
+                      <span
+                        aria-hidden
+                        className="mt-2.5 h-px w-4 shrink-0 bg-smoke/50"
+                      />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.article>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
   );

@@ -1,96 +1,122 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import { hero } from "@/data/content";
+import { motion } from "framer-motion";
+import { hero, site } from "@/data/content";
+import { scrollToId } from "@/lib/scroll";
+
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+};
+
+function Headline() {
+  const words = hero.headline.split(" ");
+  const last = words.pop();
+  return (
+    <h1 className="max-w-3xl text-[clamp(2.75rem,6.5vw,5.5rem)] font-semibold leading-[1.04] tracking-tight">
+      {words.join(" ")} <span className="text-ember">{last}</span>
+    </h1>
+  );
+}
+
+function Terminal() {
+  const pad = (label: string) =>
+    `${label} ${".".repeat(Math.max(2, 22 - label.length))}`;
+  return (
+    <div className="w-full max-w-sm rounded-xl border border-line bg-coal/80 p-5 font-mono text-xs leading-relaxed text-smoke">
+      <div className="mb-3 flex items-center gap-1.5">
+        <span className="h-2 w-2 rounded-full bg-line" />
+        <span className="h-2 w-2 rounded-full bg-line" />
+        <span className="h-2 w-2 rounded-full bg-ember/80" />
+        <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-smoke/60">
+          Session
+        </span>
+      </div>
+      <p className="text-paper">$ {hero.terminal.command}</p>
+      {hero.terminal.lines.map(([label, status]) => (
+        <p key={label} className="pl-4">
+          {pad(label)} <span className="text-paper">{status}</span>
+        </p>
+      ))}
+      <p className="pl-4">
+        {hero.terminal.partial}
+        <span className="ml-0.5 inline-block h-3 w-1.5 translate-y-0.5 animate-pulse bg-ember" />
+      </p>
+    </div>
+  );
+}
 
 export default function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, 90]);
-
   return (
-    <section
-      id="hero"
-      ref={ref}
-      className="relative flex h-svh items-center justify-center overflow-hidden"
-    >
-      {/* drifting background glow */}
-      <motion.div
+    <section id="hero" className="relative overflow-hidden">
+      {/* static warm glow, right side */}
+      <div
         aria-hidden
-        className="absolute left-[10%] top-[15%] h-[45vw] w-[45vw] rounded-full bg-ember/10 blur-[120px]"
-        animate={reduce ? undefined : { x: [0, 90, -50, 0], y: [0, -70, 50, 0] }}
-        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        aria-hidden
-        className="absolute bottom-[10%] right-[5%] h-[35vw] w-[35vw] rounded-full bg-paper/[0.04] blur-[100px]"
-        animate={reduce ? undefined : { x: [0, -80, 40, 0], y: [0, 60, -40, 0] }}
-        transition={{ duration: 34, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -right-[10%] top-[20%] h-[55vw] w-[55vw] rounded-full bg-ember/[0.06] blur-[130px]"
       />
 
-      <motion.div
-        style={reduce ? undefined : { opacity, scale, y }}
-        className="relative z-10 mx-auto max-w-5xl px-6 text-center"
-      >
+      <div className="mx-auto flex min-h-svh max-w-6xl flex-col justify-center px-6 pt-24">
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-ember"
+          {...fadeUp}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-8 flex items-center gap-2.5 font-mono text-xs text-smoke"
         >
-          {hero.eyebrow}
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember/60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-ember" />
+          </span>
+          {hero.status}
         </motion.p>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[clamp(3.25rem,11vw,8.5rem)] font-semibold leading-[0.95] tracking-tight"
-        >
-          {hero.name}
-        </motion.h1>
+        <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.25 }}>
+          <Headline />
+        </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.55 }}
-          className="mx-auto mt-8 max-w-2xl text-balance text-base leading-relaxed text-smoke md:text-lg"
+          {...fadeUp}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-8 max-w-md leading-relaxed text-smoke"
         >
-          {hero.tagline}
+          {hero.intro.map((seg, i) =>
+            seg.accent ? (
+              <span key={i} className="text-ember">
+                {seg.text}
+              </span>
+            ) : (
+              <span key={i}>{seg.text}</span>
+            )
+          )}
         </motion.p>
-      </motion.div>
 
-      {/* scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
-      >
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-smoke">
-          Scroll
-        </span>
-        <div className="h-10 w-px overflow-hidden bg-line">
-          <motion.div
-            className="h-1/2 w-full bg-ember"
-            animate={reduce ? undefined : { y: ["-100%", "200%"] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-      </motion.div>
+        <motion.div
+          {...fadeUp}
+          transition={{ duration: 0.7, delay: 0.55 }}
+          className="mt-10 flex items-center gap-7"
+        >
+          <a
+            href={hero.cta.href}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToId(hero.cta.href.slice(1));
+            }}
+            className="rounded-md border border-ember/50 bg-ember/10 px-5 py-3 font-mono text-xs text-paper transition-colors hover:bg-ember/20"
+          >
+            {hero.cta.label} →
+          </a>
+          <a
+            href={site.resume}
+            target="_blank"
+            rel="noreferrer"
+            className="font-mono text-xs text-smoke transition-colors hover:text-paper"
+          >
+            Résumé ↗
+          </a>
+        </motion.div>
+
+        <motion.div {...fadeUp} transition={{ duration: 0.7, delay: 0.7 }} className="mt-14 pb-16">
+          <Terminal />
+        </motion.div>
+      </div>
     </section>
   );
 }

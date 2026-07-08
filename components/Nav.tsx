@@ -27,9 +27,7 @@ export default function Nav() {
           if (entry.isIntersecting) setActive(entry.target.id);
         }
       },
-      // A thin band around the viewport's vertical center decides the
-      // active section, so tall pinned sections stay highlighted throughout.
-      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
     );
 
     sections.forEach((el) => observer.observe(el));
@@ -40,19 +38,19 @@ export default function Nav() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled ? "border-b border-line bg-night/75 backdrop-blur-md" : ""
+        scrolled ? "border-b border-line bg-night/80 backdrop-blur-md" : ""
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <button
           onClick={() => window.scrollTo({ top: 0 })}
-          className="font-mono text-sm tracking-widest text-paper"
+          className="font-mono text-sm text-paper"
           aria-label="Back to top"
         >
-          MP<span className="text-ember">.</span>
+          milen<span className="text-smoke">.</span>popat
         </button>
 
-        <ul className="hidden items-center gap-7 md:flex">
+        <ul className="hidden items-center gap-8 md:flex">
           {nav.map((item) => (
             <li key={item.id}>
               <a
@@ -62,24 +60,35 @@ export default function Nav() {
                   scrollToId(item.id);
                 }}
                 className={cn(
-                  "text-sm transition-colors duration-200",
+                  "font-mono text-xs transition-colors duration-200",
                   active === item.id
-                    ? "text-ember"
+                    ? "text-paper underline decoration-ember underline-offset-8"
                     : "text-smoke hover:text-paper"
                 )}
               >
+                <span className="mr-1.5 text-smoke/60">{item.num}</span>
                 {item.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <a
-          href={`mailto:${site.email}`}
-          className="font-mono text-xs uppercase tracking-widest text-smoke transition-colors hover:text-ember md:hidden"
-        >
-          Email
-        </a>
+        <div className="flex items-center gap-6">
+          <a
+            href={site.resume}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden font-mono text-xs text-smoke transition-colors hover:text-paper sm:block"
+          >
+            Résumé
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            className="rounded-md border border-line bg-coal px-4 py-2 font-mono text-xs text-paper transition-colors hover:border-ember/60"
+          >
+            Get in touch
+          </a>
+        </div>
       </nav>
     </header>
   );
