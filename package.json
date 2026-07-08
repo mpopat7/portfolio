@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "rm -rf .next",
     "dev": "next dev",
-    "build": "next build && node scripts/make-relative.mjs",
+    "check": "tsc --noEmit",
+    "build": "NEXT_BUILD_DIR=.next-build next build && node scripts/make-relative.mjs",
     "start": "next start"
   },
   "dependencies": {
