@@ -11,7 +11,7 @@ export const site = {
   email: "mpopat@iu.edu",
   github: "https://github.com/mpopat7",
   linkedin: "https://www.linkedin.com/in/milenpopat",
-  resume: "/resume.pdf",
+  resume: "./resume.pdf", // relative so the static export works from disk too
 };
 
 export const nav = [
@@ -47,7 +47,7 @@ export const about = {
   heading: "Builder first.",
   // Rendered word-by-word with a scroll-scrubbed brightness reveal.
   body: "My name is Milen and I grew up in Houston. I got into ML from the business side: digitizing paperwork for an urgent care clinic, building dashboards for a Google partner, and following the data work until it turned into research. Away from school I produce music in Logic Pro, lift, and live and die with the Detroit Lions.",
-  photo: "/headshot.jpg",
+  photo: "./headshot.jpg",
 };
 
 export type SkillGroup = {
