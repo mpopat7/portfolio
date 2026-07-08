@@ -72,25 +72,9 @@ export default function Hero() {
           <Headline />
         </motion.div>
 
-        <motion.p
-          {...fadeUp}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-8 max-w-md leading-relaxed text-smoke"
-        >
-          {hero.intro.map((seg, i) =>
-            seg.accent ? (
-              <span key={i} className="text-ember">
-                {seg.text}
-              </span>
-            ) : (
-              <span key={i}>{seg.text}</span>
-            )
-          )}
-        </motion.p>
-
         <motion.div
           {...fadeUp}
-          transition={{ duration: 0.7, delay: 0.55 }}
+          transition={{ duration: 0.7, delay: 0.45 }}
           className="mt-10 flex items-center gap-7"
         >
           <Link

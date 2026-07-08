@@ -24,13 +24,6 @@ export const hero = {
   status: "Open to internships & research roles",
   // Last word renders in the accent color.
   headline: "I build the whole pipeline, from the spreadsheet to the model.",
-  intro: [
-    { text: "I got into ML from the business side: clinic dashboards first, then client data pipelines, then a research fellowship. I ship " },
-    { text: "tools people actually use", accent: true },
-    { text: ", and I like to understand them " },
-    { text: "all the way down", accent: true },
-    { text: ", to the hardware they run on." },
-  ],
   cta: { label: "See the work", href: "/projects" },
   terminal: {
     command: "boot --profile milen",
