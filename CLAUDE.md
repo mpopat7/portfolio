@@ -32,7 +32,11 @@ dev process still drops its compiled CSS.
 - `components/sections/` — one component per section; pages in `app/*/page.tsx` compose them.
 - `scripts/make-relative.mjs` — postbuild; rewrites exported asset paths relative (depth-aware)
   so any single out/ page renders when opened via file://. Cross-page nav still needs HTTP.
-- `public/resume.pdf` — snapshot of the CS/2029-grad resume variant; re-copy after resume edits.
+- `public/headshot.jpg` and `public/resume.pdf` are **gitignored on purpose** (personal
+  assets, scrubbed from history 2026-07-07). They deploy via CLI upload but never reach
+  GitHub. On a fresh clone, copy them in before deploying:
+  headshot ← OneDrive `Professional Stuff/8. HEADSHOTS/ent white headshot.png` (resize to
+  ~900px JPEG); resume ← OneDrive `Professional Stuff/1. RESUME/CS/PDF/2029 grad/`.
 
 ## Deploy
 
