@@ -44,7 +44,7 @@ export const about = {
   photo: "/headshot.jpg",
   facts: [
     { label: "Based in", value: "Houston, TX" },
-    { label: "Currently", value: "AI Research Fellow at Algoverse" },
+    { label: "Currently", value: "Data Analyst Intern at HiView Solutions" },
     { label: "Studying", value: "Info Systems & Business Analytics + CS, IU Kelley" },
     { label: "Focus", value: "ML, analytics, AI engineering" },
   ],
@@ -230,22 +230,8 @@ export type WorkEntry = {
 export const work = {
   eyebrow: "Experience",
   heading: "Turning business problems into working systems.",
-  sub: "Internships and research across analytics, operations, and ML.",
+  sub: "Internships across analytics, operations, and applied ML.",
   entries: [
-    {
-      role: "AI Research Fellow",
-      org: "Algoverse",
-      location: "Palo Alto, CA",
-      mode: "Remote",
-      dates: "Jun 2026 – Present",
-      current: true,
-      summary:
-        "Competitive 12-week research cohort building toward a paper targeted at a top ML conference.",
-      bullets: [
-        "Building a pipeline that reconstructs 3D joint kinematics from smartphone video (OpenCap) to classify neuromuscular disease, with preliminary benchmarks of 82% accuracy against 50% for standard clinical timed tests.",
-        "Engineering interpretable movement features across 129 subjects and 9 clinical tasks that flag the joints driving each diagnosis.",
-      ],
-    },
     {
       role: "Data Analyst Intern",
       org: "HiView Solutions",
