@@ -10,6 +10,7 @@ const EduCerts = dynamic(() => import("@/components/sections/EduCerts"));
 const Leadership = dynamic(() => import("@/components/sections/Leadership"));
 const Extras = dynamic(() => import("@/components/sections/Extras"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <Leadership />
       <Extras />
       <Contact />
+      <Footer />
     </main>
   );
 }

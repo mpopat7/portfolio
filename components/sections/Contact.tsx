@@ -4,20 +4,6 @@ import { motion } from "framer-motion";
 import { contact, site } from "@/data/content";
 import Eyebrow from "@/components/Eyebrow";
 
-function FooterLink({ href, label }: { href: string; label: string }) {
-  const external = href.startsWith("http");
-  return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer" : undefined}
-      className="font-mono text-xs text-smoke transition-colors hover:text-ember"
-    >
-      {label} ↗
-    </a>
-  );
-}
-
 export default function Contact() {
   return (
     <section id="contact" className="border-t border-line">
@@ -40,17 +26,6 @@ export default function Contact() {
         >
           {site.email}
         </a>
-
-        <div className="mt-12 flex items-center gap-8">
-          <FooterLink href={site.github} label="GitHub" />
-          <FooterLink href={site.linkedin} label="LinkedIn" />
-          <FooterLink href={site.resume} label="Résumé" />
-        </div>
-
-        <p className="mt-20 border-t border-line pt-6 font-mono text-[11px] text-smoke/60">
-          © {new Date().getFullYear()} {site.name} · Designed and built from
-          scratch with Next.js
-        </p>
       </motion.div>
     </section>
   );

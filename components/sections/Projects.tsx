@@ -186,23 +186,47 @@ function MoreWork() {
   return (
     <div className="mt-24 border-t border-line pt-16">
       <Eyebrow>More work</Eyebrow>
-      <ul>
+      <div className="mt-4 grid gap-8 md:grid-cols-3">
         {moreProjects.map((project) => (
-          <li
+          <motion.article
             key={project.name}
-            className="grid gap-2 border-t border-line py-6 md:grid-cols-[1fr,2fr,auto] md:items-baseline md:gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+            transition={{ duration: 0.5 }}
           >
-            <span className="font-medium">{project.name}</span>
-            <span className="text-sm text-smoke">{project.tagline}</span>
-            <span className="flex items-center gap-5 font-mono text-xs text-smoke/70">
-              {project.tech.join(" · ")}
-              {project.github && (
+            <div className="overflow-hidden rounded-xl border border-line bg-coal">
+              <div className="flex items-center gap-2 border-b border-line px-4 py-2.5">
+                <span className="h-2 w-2 rounded-full bg-line" />
+                <span className="h-2 w-2 rounded-full bg-line" />
+                <span className="h-2 w-2 rounded-full bg-line" />
+              </div>
+              <div className="relative flex aspect-[16/9] items-end overflow-hidden p-5">
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(100% 110% at 25% 0%, rgba(255,92,56,0.13), transparent 60%)",
+                  }}
+                />
+                <p className="relative font-mono text-xs text-smoke">
+                  {project.tech.join(" · ")}
+                </p>
+              </div>
+            </div>
+            <h4 className="mt-5 font-medium">{project.name}</h4>
+            <p className="mt-2 text-sm leading-relaxed text-smoke">
+              {project.tagline}
+            </p>
+            {project.github && (
+              <div className="mt-3">
                 <ExtLink href={project.github} label="Source" accent />
-              )}
-            </span>
-          </li>
+              </div>
+            )}
+          </motion.article>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

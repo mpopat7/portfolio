@@ -43,55 +43,82 @@ export const hero = {
   },
 };
 
+export type TextSegment = { text: string; accent?: boolean };
+
 export const about = {
-  heading: "Builder first.",
-  // Rendered word-by-word with a scroll-scrubbed brightness reveal.
-  body: "My name is Milen and I grew up in Houston. I got into ML from the business side: digitizing paperwork for an urgent care clinic, building dashboards for a Google partner, and following the data work until it turned into research. Away from school I produce music in Logic Pro, lift, and live and die with the Detroit Lions.",
+  heading:
+    "I got into ML from the business side, and stayed for the build.",
   photo: "./headshot.jpg",
+  facts: [
+    { label: "Based in", value: "Houston, TX" },
+    { label: "Currently", value: "AI Research Fellow at Algoverse" },
+    { label: "Studying", value: "Info Systems & Business Analytics + CS, IU Kelley" },
+    { label: "Focus", value: "ML, analytics, AI engineering" },
+  ],
+  paragraphs: [
+    [
+      { text: "My name is Milen and I grew up in Houston. I got into ML " },
+      { text: "from the business side", accent: true },
+      { text: ": digitizing paperwork for an urgent care clinic, building dashboards for a Google partner, and following the data work " },
+      { text: "until it turned into research", accent: true },
+      { text: "." },
+    ],
+    [
+      { text: "Away from school I produce music in Logic Pro, lift, and " },
+      { text: "live and die with the Detroit Lions", accent: true },
+      { text: "." },
+    ],
+  ] satisfies TextSegment[][],
+  now: [
+    "Classifying neuromuscular disease from smartphone video in the Algoverse fellowship",
+    "Dashboards and ETL across 650+ client domains at HiView Solutions",
+    "Building a multi-agent license compliance auditor with LangGraph",
+  ],
 };
 
-export type SkillGroup = {
+export type ToolGroup = {
   title: string;
   items: string[];
 };
 
-export const skillGroups: SkillGroup[] = [
+export const toolsIntro = "Tools I reach for";
+
+export const toolGroups: ToolGroup[] = [
   {
     title: "Languages",
     items: ["Python", "SQL", "TypeScript", "JavaScript", "Java", "HTML/CSS"],
   },
   {
-    title: "Analysis & Visualization",
+    title: "Analytics & Data",
     items: [
-      "Excel (Power Query, Power Pivot, VBA)",
+      "Excel (Power Query, VBA)",
       "Power BI",
       "Looker Studio",
       "Google Sheets",
     ],
   },
   {
-    title: "ML & Deep Learning",
+    title: "ML & AI",
     items: [
-      "Probability & statistics",
-      "Gradient descent",
-      "Transformer architectures",
+      "Transformers",
+      "LangGraph",
+      "Qdrant",
+      "LiteLLM",
+      "RAG & MCP",
+      "Claude & Gemini APIs",
     ],
   },
   {
-    title: "AI Engineering",
-    items: ["LangGraph", "Qdrant", "LiteLLM", "RAG & MCP", "Claude & Gemini APIs"],
-  },
-  {
-    title: "Local Models & Infra",
-    items: ["Ollama", "Home inference server", "Raspberry Pi 5", "SSH & networking"],
-  },
-  {
-    title: "Web & Shipping",
-    items: ["Next.js", "React", "Vercel", "Git"],
-  },
-  {
-    title: "Automation",
-    items: ["n8n", "AI agents", "Python ETL (Apollo API)"],
+    title: "Infra & Shipping",
+    items: [
+      "Ollama",
+      "Raspberry Pi 5",
+      "SSH & networking",
+      "n8n",
+      "Next.js",
+      "Vercel",
+      "Git",
+    ],
   },
 ];
 
@@ -342,4 +369,9 @@ export const leadership: ListSectionContent = {
 export const contact = {
   heading: "Let's build something.",
   sub: "Open to research collaborations, internships, and interesting problems.",
+};
+
+export const footer = {
+  role: "Builder, Houston, Texas",
+  note: "Designed and built from scratch.",
 };
