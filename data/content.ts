@@ -153,11 +153,11 @@ export const featuredProjects: FeaturedProject[] = [
   {
     name: "License Compliance Auditor",
     year: "2026",
-    status: "In development",
+    status: "In progress",
     url: "github.com/mpopat7/license-compliance-auditor",
     tagline: "AI agents that audit a dependency tree for license risk",
     description:
-      "A multi-agent pipeline that reads a repository, detects and classifies its open-source licenses, and flags obligation conflicts. LangGraph orchestrates the agents, Qdrant backs the retrieval, LiteLLM handles model routing, and deterministic SPDX-matrix reasoning keeps the AI from grading its own homework.",
+      "🚧 In progress — multi-agent auditor that detects/classifies OSS licenses in a repo and flags obligation conflicts (SPDX-matrix reasoning + LLM extraction)",
     tech: ["LangGraph", "Qdrant", "LiteLLM", "Python"],
     github: "https://github.com/mpopat7/license-compliance-auditor",
   },
