@@ -95,30 +95,47 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-export type Project = {
+export type FeaturedProject = {
   name: string;
   year: string;
+  status: string; // rendered next to an ember dot, e.g. "Live", "In development"
+  url: string; // shown in the browser-frame chrome
   tagline: string;
   description: string;
   tech: string[];
   github: string;
   demo?: string;
+  image?: string; // optional screenshot in /public; abstract panel when absent
+  stats?: { value: string; label: string }[];
 };
 
-export const projects: Project[] = [
+export const projectsIntro = {
+  heading: "Things I've built, end to end.",
+  sub: "RAG systems, agent pipelines, and a deployed AI web app, each one shipped and documented. Open the source for the full story.",
+};
+
+export const featuredProjects: FeaturedProject[] = [
   {
     name: "Multimodal RAG",
     year: "2026",
-    tagline: "Document Q&A that reads the page the way a person sees it.",
+    status: "Benchmarked & shipped",
+    url: "github.com/mpopat7/multimodal-rag",
+    tagline: "Document Q&A that reads the page the way a person sees it",
     description:
-      "A visual-document RAG system that embeds page images with the ColQwen2 vision-language model and answers questions over PDFs and slide decks from layout alone, with no OCR step. Benchmarked against an OCR-text baseline across 23 queries and 85 pages: 87% top-1 retrieval (0.91 MRR) versus 70% (0.75 MRR), with the biggest gains on charts, flowcharts, and tables.",
+      "A visual-document RAG system that embeds page images with the ColQwen2 vision-language model and answers questions over PDFs and slide decks from layout alone, with no OCR step. Benchmarked against an OCR-text baseline across 23 queries and 85 pages, with the biggest gains on charts, flowcharts, and tables where extractable text is thin.",
     tech: ["Python", "ColQwen2", "Ollama"],
     github: "https://github.com/mpopat7/multimodal-rag",
+    stats: [
+      { value: "87%", label: "top-1 retrieval" },
+      { value: "+17pts", label: "vs OCR baseline" },
+    ],
   },
   {
-    name: "Open Source License Compliance Auditor",
+    name: "License Compliance Auditor",
     year: "2026",
-    tagline: "AI agents that audit a dependency tree for license risk.",
+    status: "In development",
+    url: "github.com/mpopat7/license-compliance-auditor",
+    tagline: "AI agents that audit a dependency tree for license risk",
     description:
       "A multi-agent pipeline that reads a repository, detects and classifies its open-source licenses, and flags obligation conflicts. LangGraph orchestrates the agents, Qdrant backs the retrieval, LiteLLM handles model routing, and deterministic SPDX-matrix reasoning keeps the AI from grading its own homework.",
     tech: ["LangGraph", "Qdrant", "LiteLLM", "Python"],
@@ -127,37 +144,53 @@ export const projects: Project[] = [
   {
     name: "SNAP Notice Navigator",
     year: "2026",
-    tagline: "Plain-language help for confusing benefit letters.",
+    status: "Live on Vercel",
+    url: "snap-notice-navigator.vercel.app",
+    tagline: "Plain-language help for confusing benefit letters",
     description:
-      "An AI web app that explains SNAP benefit notices in plain language and produces a source-backed, deadline-aware checklist of next steps. Built for the USAII Global AI Hackathon with responsible-AI guardrails: hedged wording, human-in-the-loop review, no automated eligibility decisions, and cited official sources. Live on Vercel.",
+      "An AI web app that explains SNAP benefit notices in plain language and produces a source-backed, deadline-aware checklist of next steps. Built for the USAII Global AI Hackathon with responsible-AI guardrails: hedged wording, human-in-the-loop review, no automated eligibility decisions, and cited official sources.",
     tech: ["Next.js", "TypeScript", "Claude API", "Vercel"],
     github: "https://github.com/mpopat7/snap-notice-navigator",
     demo: "https://snap-notice-navigator.vercel.app",
   },
+];
+
+export const researchFeature = {
+  sub: "Fellowship research in progress, aimed at a top ML conference.",
+  label: "Algoverse AI Research Fellowship · 2026",
+  title: "Classifying neuromuscular disease from smartphone video",
+  meta: "12-week conference-paper cohort · in progress",
+  description:
+    "A pipeline that reconstructs 3D joint kinematics from smartphone video with OpenCap, then engineers interpretable movement features across 129 subjects and 9 clinical tasks. Preliminary benchmarks reach 82% accuracy against 50% for standard clinical timed tests.",
+  pipeline: ["smartphone video", "OpenCap 3D kinematics", "movement features", "classifier"],
+};
+
+export type MoreProject = {
+  name: string;
+  tagline: string;
+  tech: string[];
+  github: string;
+};
+
+export const moreProjects: MoreProject[] = [
   {
     name: "Local LLM Hallucination Eval",
-    year: "2026",
-    tagline: "Measuring how often a local model makes things up.",
-    description:
-      "An evaluation harness that grades a local LLM's answers to Python code questions against deterministic ground truth derived from the abstract syntax tree. Ground-truth generation is fully separated from model querying, so the model never grades its own output, and every result gets an explicit outcome code: CORRECT, PARTIAL, WRONG COUNT, MISSED.",
+    tagline:
+      "Grades a local model's Python answers against AST-derived ground truth, with explicit outcome codes.",
     tech: ["Python", "AST", "Ollama"],
     github: "https://github.com/mpopat7/local-ai-hallucination-test",
   },
   {
     name: "Obsidian Brain",
-    year: "2026",
-    tagline: "A second brain that AI agents can read.",
-    description:
-      "Scripts that capture ChatGPT, Claude, and Ollama conversations into a single linked Obsidian knowledge graph, exposed read-only to AI agents through a standard-library Python MCP server. Everything I've figured out becomes queryable from Claude Code.",
+    tagline:
+      "Captures ChatGPT, Claude, and Ollama conversations into a linked Obsidian graph, queryable by AI agents over MCP.",
     tech: ["Python", "MCP", "Obsidian"],
     github: "https://github.com/mpopat7/obsidian-brain",
   },
   {
     name: "Gallstone Ultrasound Classifier",
-    year: "2025",
-    tagline: "Machine learning on real clinical reports.",
-    description:
-      "A Python machine-learning model prototyped in Google Colab for Precise Urgent Care that analyzes ultrasound reports to detect and classify gallstones, reaching 73% classification accuracy on the available report data.",
+    tagline:
+      "ML model reading real ultrasound reports for Precise Urgent Care, at 73% classification accuracy.",
     tech: ["Python", "Google Colab"],
     github: "",
   },
