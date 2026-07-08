@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { footer, nav, site } from "@/data/content";
-import { scrollToId } from "@/lib/scroll";
 
 export default function Footer() {
   return (
@@ -17,17 +17,13 @@ export default function Footer() {
 
           <ul className="flex gap-7">
             {nav.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToId(item.id);
-                  }}
+              <li key={item.href}>
+                <Link
+                  href={item.href}
                   className="font-mono text-xs text-smoke transition-colors hover:text-paper"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

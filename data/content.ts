@@ -11,13 +11,13 @@ export const site = {
   email: "mpopat@iu.edu",
   github: "https://github.com/mpopat7",
   linkedin: "https://www.linkedin.com/in/milenpopat",
-  resume: "./resume.pdf", // relative so the static export works from disk too
+  resume: "/resume.pdf",
 };
 
 export const nav = [
-  { id: "about", label: "About", num: "01" },
-  { id: "projects", label: "Projects", num: "02" },
-  { id: "work", label: "Work", num: "03" },
+  { href: "/projects", label: "Projects", num: "01" },
+  { href: "/work", label: "Work", num: "02" },
+  { href: "/about", label: "About", num: "03" },
 ];
 
 export const hero = {
@@ -31,7 +31,7 @@ export const hero = {
     { text: "all the way down", accent: true },
     { text: ", to the hardware they run on." },
   ],
-  cta: { label: "See the work", href: "#work" },
+  cta: { label: "See the work", href: "/projects" },
   terminal: {
     command: "boot --profile milen",
     lines: [
@@ -48,7 +48,7 @@ export type TextSegment = { text: string; accent?: boolean };
 export const about = {
   heading:
     "I got into ML from the business side, and stayed for the build.",
-  photo: "./headshot.jpg",
+  photo: "/headshot.jpg",
   facts: [
     { label: "Based in", value: "Houston, TX" },
     { label: "Currently", value: "AI Research Fellow at Algoverse" },

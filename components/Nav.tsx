@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { nav, site } from "@/data/content";
-import { scrollToId } from "@/lib/scroll";
 import { cn } from "@/lib/utils";
 
 export default function Nav() {
-  const [active, setActive] = useState("");
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -14,24 +15,6 @@ export default function Nav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = nav
-      .map((item) => document.getElementById(item.id))
-      .filter((el): el is HTMLElement => el !== null);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        }
-      },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
-    );
-
-    sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
   }, []);
 
   return (
@@ -42,35 +25,32 @@ export default function Nav() {
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <button
-          onClick={() => window.scrollTo({ top: 0 })}
-          className="font-mono text-sm text-paper"
-          aria-label="Back to top"
-        >
+        <Link href="/" className="font-mono text-sm text-paper">
           milen<span className="text-smoke">.</span>popat
-        </button>
+        </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {nav.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToId(item.id);
-                }}
-                className={cn(
-                  "font-mono text-xs transition-colors duration-200",
-                  active === item.id
-                    ? "text-paper underline decoration-ember underline-offset-8"
-                    : "text-smoke hover:text-paper"
-                )}
-              >
-                <span className="mr-1.5 text-smoke/60">{item.num}</span>
-                {item.label}
-              </a>
-            </li>
-          ))}
+        <ul className="flex items-center gap-5 sm:gap-8">
+          {nav.map((item) => {
+            const active = pathname.startsWith(item.href);
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "font-mono text-xs transition-colors duration-200",
+                    active
+                      ? "text-paper underline decoration-ember underline-offset-8"
+                      : "text-smoke hover:text-paper"
+                  )}
+                >
+                  <span className="mr-1.5 hidden text-smoke/60 sm:inline">
+                    {item.num}
+                  </span>
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-6">
@@ -78,13 +58,13 @@ export default function Nav() {
             href={site.resume}
             target="_blank"
             rel="noreferrer"
-            className="hidden font-mono text-xs text-smoke transition-colors hover:text-paper sm:block"
+            className="hidden font-mono text-xs text-smoke transition-colors hover:text-paper md:block"
           >
             Résumé
           </a>
           <a
             href={`mailto:${site.email}`}
-            className="rounded-md border border-line bg-coal px-4 py-2 font-mono text-xs text-paper transition-colors hover:border-ember/60"
+            className="hidden rounded-md border border-line bg-coal px-4 py-2 font-mono text-xs text-paper transition-colors hover:border-ember/60 sm:block"
           >
             Get in touch
           </a>

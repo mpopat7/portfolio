@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { hero, site } from "@/data/content";
-import { scrollToId } from "@/lib/scroll";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -93,16 +93,12 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.55 }}
           className="mt-10 flex items-center gap-7"
         >
-          <a
+          <Link
             href={hero.cta.href}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToId(hero.cta.href.slice(1));
-            }}
             className="rounded-md border border-ember/50 bg-ember/10 px-5 py-3 font-mono text-xs text-paper transition-colors hover:bg-ember/20"
           >
             {hero.cta.label} →
-          </a>
+          </Link>
           <a
             href={site.resume}
             target="_blank"

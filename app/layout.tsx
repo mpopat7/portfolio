@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import { site } from "@/data/content";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -27,7 +28,8 @@ export default function RootLayout({
       <body className="bg-night font-sans text-paper antialiased">
         <SmoothScroll>
           <Nav />
-          {children}
+          <main className="pt-16">{children}</main>
+          <Footer />
         </SmoothScroll>
       </body>
     </html>
