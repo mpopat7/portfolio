@@ -6,3 +6,7 @@ out/
 next-env.d.ts
 .DS_Store
 .vercel
+
+# personal assets: kept local + deployed, never committed
+public/headshot.jpg
+public/resume.pdf
