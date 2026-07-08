@@ -36,7 +36,7 @@ dev process still drops its compiled CSS.
 
 ## Deploy
 
-- Live: https://portfolio-ecru-zeta-91.vercel.app (Vercel project `portfolio`)
+- Live: https://milenpopat.vercel.app (Vercel project `portfolio`)
 - Repo: https://github.com/mpopat7/portfolio (public — no Claude co-author trailers)
 - Ship an update: commit, `git push`, then `vercel --prod --yes` from the project
   root (deploys are CLI-triggered, not git-triggered). `vercel.json` serves the
