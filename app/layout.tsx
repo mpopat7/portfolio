@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Backdrop from "@/components/ui/Backdrop";
 import { site } from "@/data/content";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -26,10 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body className="bg-night font-sans text-paper antialiased">
+        <Backdrop />
         <SmoothScroll>
-          <Nav />
-          <main className="pt-16">{children}</main>
-          <Footer />
+          <div className="relative z-10">
+            <Nav />
+            <main className="pt-16">{children}</main>
+            <Footer />
+          </div>
         </SmoothScroll>
       </body>
     </html>

@@ -1,18 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { work } from "@/data/content";
 import Eyebrow from "@/components/Eyebrow";
+import Reveal from "@/components/ui/Reveal";
 
 export default function Experience() {
   return (
     <section id="work" className="border-t border-line">
       <div className="mx-auto max-w-6xl px-6 py-28">
         <Eyebrow>{work.eyebrow}</Eyebrow>
-        <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
-          {work.heading}
-        </h2>
-        <p className="mt-6 max-w-md leading-relaxed text-smoke">{work.sub}</p>
+        <Reveal>
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+            {work.heading}
+          </h2>
+          <p className="mt-6 max-w-md leading-relaxed text-smoke">{work.sub}</p>
+        </Reveal>
 
         <div className="mt-14">
           {work.entries.map((entry) => (
@@ -21,13 +24,16 @@ export default function Experience() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-              transition={{ duration: 0.5 }}
-              className="grid gap-4 border-t border-line py-10 md:grid-cols-[200px,1fr] md:gap-10"
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="group grid gap-4 border-t border-line py-10 transition-colors duration-300 hover:border-ember/40 md:grid-cols-[200px,1fr] md:gap-10"
             >
               <div className="font-mono text-xs leading-relaxed text-smoke">
                 <p className="flex items-center gap-2 text-paper">
                   {entry.current && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-ember" />
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember/50" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ember" />
+                    </span>
                   )}
                   {entry.dates}
                 </p>
@@ -42,7 +48,9 @@ export default function Experience() {
               <div>
                 <h3 className="text-xl font-semibold tracking-tight md:text-2xl">
                   {entry.role}{" "}
-                  <span className="font-normal text-smoke">· {entry.org}</span>
+                  <span className="font-normal text-smoke transition-colors duration-300 group-hover:text-ember">
+                    · {entry.org}
+                  </span>
                 </h3>
                 <p className="mt-2 max-w-2xl text-smoke">{entry.summary}</p>
                 <ul className="mt-5 space-y-3">
@@ -53,7 +61,7 @@ export default function Experience() {
                     >
                       <span
                         aria-hidden
-                        className="mt-2.5 h-px w-4 shrink-0 bg-smoke/50"
+                        className="mt-2.5 h-px w-4 shrink-0 bg-smoke/50 transition-all duration-300 group-hover:w-6 group-hover:bg-ember/70"
                       />
                       {bullet}
                     </li>

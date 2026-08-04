@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   featuredProjects,
   moreProjects,
@@ -9,6 +9,9 @@ import {
   type FeaturedProject,
 } from "@/data/content";
 import Eyebrow from "@/components/Eyebrow";
+import Reveal from "@/components/ui/Reveal";
+import Spotlight from "@/components/ui/Spotlight";
+import Counter from "@/components/ui/Counter";
 import { cn } from "@/lib/utils";
 
 function ExtLink({
@@ -27,12 +30,34 @@ function ExtLink({
       target="_blank"
       rel="noreferrer"
       className={cn(
-        "font-mono text-xs transition-colors",
+        "group/link font-mono text-xs transition-colors",
         accent ? "text-ember hover:opacity-70" : "text-smoke hover:text-paper"
       )}
     >
-      {label} ↗
+      {label}
+      <span className="ml-1 inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">
+        ↗
+      </span>
     </a>
+  );
+}
+
+function TechChips({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-6 flex flex-wrap gap-2">
+      {items.map((t, i) => (
+        <motion.li
+          key={t}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.35, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-smoke transition-colors duration-300 hover:border-ember/40 hover:text-paper"
+        >
+          {t}
+        </motion.li>
+      ))}
+    </ul>
   );
 }
 
@@ -40,7 +65,7 @@ function ExtLink({
 // otherwise an abstract placeholder panel.
 function BrowserCard({ project }: { project: FeaturedProject }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-line bg-coal shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+    <Spotlight className="shadow-[0_20px_60px_rgba(0,0,0,0.45)] transition-transform duration-500 ease-out-expo hover:-translate-y-1">
       <div className="flex items-center gap-2 border-b border-line px-4 py-2.5">
         <span className="h-2 w-2 rounded-full bg-line" />
         <span className="h-2 w-2 rounded-full bg-line" />
@@ -72,32 +97,29 @@ function BrowserCard({ project }: { project: FeaturedProject }) {
           </p>
         </div>
       )}
-    </div>
+    </Spotlight>
   );
 }
 
 function Featured({ project, index }: { project: FeaturedProject; index: number }) {
   const flip = index % 2 === 1;
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-      transition={{ duration: 0.6 }}
-      className="grid items-center gap-10 py-16 md:grid-cols-2 md:gap-16"
-    >
-      <div className={cn(flip && "md:order-2")}>
+    <article className="grid items-center gap-10 py-16 md:grid-cols-2 md:gap-16">
+      <Reveal className={cn(flip && "md:order-2")} y={28}>
         <BrowserCard project={project} />
-      </div>
+      </Reveal>
 
-      <div className={cn(flip && "md:order-1")}>
+      <Reveal className={cn(flip && "md:order-1")} delay={0.08}>
         <p className="flex items-center gap-3 font-mono text-xs text-smoke">
           <span>
             {String(index + 1).padStart(2, "0")}&ensp;{project.year}
           </span>
           <span aria-hidden className="h-px w-6 bg-line" />
           <span className="flex items-center gap-1.5 text-ember">
-            <span className="h-1.5 w-1.5 rounded-full bg-ember" />
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember/50" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ember" />
+            </span>
             {project.status}
           </span>
         </p>
@@ -109,23 +131,14 @@ function Featured({ project, index }: { project: FeaturedProject; index: number 
           {project.description}
         </p>
 
-        <ul className="mt-6 flex flex-wrap gap-2">
-          {project.tech.map((t) => (
-            <li
-              key={t}
-              className="rounded-md border border-line px-2.5 py-1 font-mono text-[11px] text-smoke"
-            >
-              {t}
-            </li>
-          ))}
-        </ul>
+        <TechChips items={project.tech} />
 
         {project.stats && (
           <div className="mt-7 flex gap-10">
             {project.stats.map((stat) => (
               <p key={stat.label}>
                 <span className="text-2xl font-semibold text-paper">
-                  {stat.value}
+                  <Counter value={stat.value} />
                 </span>
                 <span className="ml-2 font-mono text-xs text-smoke">
                   {stat.label}
@@ -139,8 +152,8 @@ function Featured({ project, index }: { project: FeaturedProject; index: number 
           <ExtLink href={project.github} label="Source" accent />
           {project.demo && <ExtLink href={project.demo} label="Live" />}
         </div>
-      </div>
-    </motion.article>
+      </Reveal>
+    </article>
   );
 }
 
@@ -150,34 +163,39 @@ function Research() {
       <Eyebrow>Research</Eyebrow>
       <p className="max-w-md text-smoke">{researchFeature.sub}</p>
 
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-        transition={{ duration: 0.6 }}
-        className="mt-10 grid overflow-hidden rounded-xl border border-line bg-coal md:grid-cols-[2fr,3fr]"
-      >
-        <div className="flex flex-col justify-center gap-3 border-b border-line p-8 font-mono text-xs text-smoke md:border-b-0 md:border-r">
-          {researchFeature.pipeline.map((step, i) => (
-            <p key={step} className="flex items-center gap-3">
-              <span className="text-ember">{i < researchFeature.pipeline.length - 1 ? "├─" : "└─"}</span>
-              {step}
+      <Reveal className="mt-10" y={28}>
+        <Spotlight className="grid md:grid-cols-[2fr,3fr]" size={620}>
+          <div className="flex flex-col justify-center gap-3 border-b border-line p-8 font-mono text-xs text-smoke md:border-b-0 md:border-r">
+            {researchFeature.pipeline.map((step, i) => (
+              <motion.p
+                key={step}
+                initial={{ opacity: 0, x: -8 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: 0.15 + i * 0.1 }}
+                className="flex items-center gap-3"
+              >
+                <span className="text-ember">
+                  {i < researchFeature.pipeline.length - 1 ? "├─" : "└─"}
+                </span>
+                {step}
+              </motion.p>
+            ))}
+          </div>
+          <div className="p-8">
+            <p className="font-mono text-xs text-ember">{researchFeature.label}</p>
+            <h3 className="mt-3 text-xl font-semibold tracking-tight md:text-2xl">
+              {researchFeature.title}
+            </h3>
+            <p className="mt-1.5 font-mono text-xs text-smoke">
+              {researchFeature.meta}
             </p>
-          ))}
-        </div>
-        <div className="p-8">
-          <p className="font-mono text-xs text-ember">{researchFeature.label}</p>
-          <h3 className="mt-3 text-xl font-semibold tracking-tight md:text-2xl">
-            {researchFeature.title}
-          </h3>
-          <p className="mt-1.5 font-mono text-xs text-smoke">
-            {researchFeature.meta}
-          </p>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-smoke/90">
-            {researchFeature.description}
-          </p>
-        </div>
-      </motion.div>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-smoke/90">
+              {researchFeature.description}
+            </p>
+          </div>
+        </Spotlight>
+      </Reveal>
     </div>
   );
 }
@@ -187,44 +205,40 @@ function MoreWork() {
     <div className="mt-24 border-t border-line pt-16">
       <Eyebrow>More work</Eyebrow>
       <div className="mt-4 grid gap-8 md:grid-cols-3">
-        {moreProjects.map((project) => (
-          <motion.article
-            key={project.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="overflow-hidden rounded-xl border border-line bg-coal">
-              <div className="flex items-center gap-2 border-b border-line px-4 py-2.5">
-                <span className="h-2 w-2 rounded-full bg-line" />
-                <span className="h-2 w-2 rounded-full bg-line" />
-                <span className="h-2 w-2 rounded-full bg-line" />
-              </div>
-              <div className="relative flex aspect-[16/9] items-end overflow-hidden p-5">
-                <div
-                  aria-hidden
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(100% 110% at 25% 0%, rgba(255,92,56,0.13), transparent 60%)",
-                  }}
-                />
-                <p className="relative font-mono text-xs text-smoke">
-                  {project.tech.join(" · ")}
-                </p>
-              </div>
-            </div>
-            <h4 className="mt-5 font-medium">{project.name}</h4>
-            <p className="mt-2 text-sm leading-relaxed text-smoke">
-              {project.tagline}
-            </p>
-            {project.github && (
-              <div className="mt-3">
-                <ExtLink href={project.github} label="Source" accent />
-              </div>
-            )}
-          </motion.article>
+        {moreProjects.map((project, i) => (
+          <Reveal key={project.name} delay={i * 0.08}>
+            <article>
+              <Spotlight className="transition-transform duration-500 ease-out-expo hover:-translate-y-1">
+                <div className="flex items-center gap-2 border-b border-line px-4 py-2.5">
+                  <span className="h-2 w-2 rounded-full bg-line" />
+                  <span className="h-2 w-2 rounded-full bg-line" />
+                  <span className="h-2 w-2 rounded-full bg-line" />
+                </div>
+                <div className="relative flex aspect-[16/9] items-end overflow-hidden p-5">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(100% 110% at 25% 0%, rgba(255,92,56,0.13), transparent 60%)",
+                    }}
+                  />
+                  <p className="relative font-mono text-xs text-smoke">
+                    {project.tech.join(" · ")}
+                  </p>
+                </div>
+              </Spotlight>
+              <h4 className="mt-5 font-medium">{project.name}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-smoke">
+                {project.tagline}
+              </p>
+              {project.github && (
+                <div className="mt-3">
+                  <ExtLink href={project.github} label="Source" accent />
+                </div>
+              )}
+            </article>
+          </Reveal>
         ))}
       </div>
     </div>
@@ -236,12 +250,14 @@ export default function Projects() {
     <section id="projects" className="border-t border-line">
       <div className="mx-auto max-w-6xl px-6 py-28">
         <Eyebrow>Projects</Eyebrow>
-        <h2 className="max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">
-          {projectsIntro.heading}
-        </h2>
-        <p className="mt-6 max-w-md leading-relaxed text-smoke">
-          {projectsIntro.sub}
-        </p>
+        <Reveal>
+          <h2 className="max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">
+            {projectsIntro.heading}
+          </h2>
+          <p className="mt-6 max-w-md leading-relaxed text-smoke">
+            {projectsIntro.sub}
+          </p>
+        </Reveal>
 
         <div className="mt-10">
           {featuredProjects.map((project, i) => (

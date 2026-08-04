@@ -28,6 +28,43 @@ body {
   color: #060505;
 }
 
+@layer components {
+  /* Hairline gradient border drawn in the padding box, so the card keeps a
+     flat background and only the edge lights up. */
+  .edge {
+    position: relative;
+  }
+  .edge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      140deg,
+      rgba(244, 241, 234, 0.14),
+      rgba(244, 241, 234, 0.02) 38%,
+      rgba(255, 92, 56, 0) 60%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .group:hover .edge::before,
+  .edge:hover::before {
+    background: linear-gradient(
+      140deg,
+      rgba(244, 241, 234, 0.28),
+      rgba(255, 92, 56, 0.45) 45%,
+      rgba(255, 92, 56, 0.08) 75%
+    );
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

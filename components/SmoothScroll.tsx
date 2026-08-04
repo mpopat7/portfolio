@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect } from "react";
 import Lenis from "lenis";
+import { MotionConfig } from "motion/react";
 import { setLenis } from "@/lib/scroll";
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
@@ -23,5 +24,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return <>{children}</>;
+  // reducedMotion="user" makes every motion component honour the OS setting,
+  // which the CSS rule in globals.css can't do for JS-driven animation.
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }

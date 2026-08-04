@@ -7,7 +7,7 @@ export const site = {
   name: "Milen Popat",
   title: "Milen Popat · Builder",
   description:
-    "Portfolio of Milen Popat: ML research, applied data work, and AI tools. Information Systems & Business Analytics at Indiana University Kelley, CS minor.",
+    "Portfolio of Milen Popat: ML research, applied data work, and AI tools. Data Science and Computer Science at Indiana University Bloomington.",
   email: "mpopat@iu.edu",
   github: "https://github.com/mpopat7",
   linkedin: "https://www.linkedin.com/in/milenpopat",
@@ -45,7 +45,7 @@ export const about = {
   facts: [
     { label: "Based in", value: "Houston, TX" },
     { label: "Currently", value: "Data Analyst Intern at HiView Solutions" },
-    { label: "Studying", value: "Info Systems & Business Analytics + CS, IU Kelley" },
+    { label: "Studying", value: "Data Science + Computer Science, Indiana University" },
     { label: "Focus", value: "ML, analytics, AI engineering" },
   ],
   paragraphs: [
@@ -275,8 +275,8 @@ export const work = {
 };
 
 export const education = {
-  school: "Indiana University, Kelley School of Business",
-  degree: "BS in Information Systems & Business Analytics, Minor in Computer Science",
+  school: "Indiana University Bloomington",
+  degree: "Bachelor of Science in Data Science and Computer Science",
   meta: "Bloomington, IN · GPA 3.81 / 4.00",
   dates: "Expected May 2029",
 };

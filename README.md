@@ -2,9 +2,9 @@
 
 Dark, editorial, text-forward personal portfolio: left-aligned single column,
 hairline-divided rows, mono labels, one ember accent. Next.js 14 (App Router)
-+ TypeScript + Tailwind CSS, Framer Motion for subtle fade-ins, GSAP
-ScrollTrigger for the scrubbed About text, Lenis for smooth scrolling. Ships
-as a fully static export.
++ TypeScript + Tailwind CSS, Motion (motion.dev) for scroll reveals, pointer
+spotlights and the scroll-linked hero, Lenis for smooth scrolling. Ships as a
+fully static export.
 
 ## Commands
 

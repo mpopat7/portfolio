@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { toolGroups, toolsIntro } from "@/data/content";
 import Eyebrow from "@/components/Eyebrow";
 
@@ -24,13 +24,22 @@ export default function Skills() {
                 {group.title}
               </p>
               <ul className="mt-4 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <li
+                {group.items.map((item, j) => (
+                  <motion.li
                     key={item}
-                    className="rounded-md border border-line bg-coal px-2.5 py-1 font-mono text-[11px] text-paper/80"
+                    initial={{ opacity: 0, scale: 0.88 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.4,
+                      delay: i * 0.06 + j * 0.03,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    whileHover={{ y: -2 }}
+                    className="cursor-default rounded-full border border-line bg-coal px-2.5 py-1 font-mono text-[11px] text-paper/80 transition-colors duration-300 hover:border-ember/50 hover:bg-ember/[0.08] hover:text-paper"
                   >
                     {item}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
