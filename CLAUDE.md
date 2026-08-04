@@ -41,6 +41,9 @@ dev process still drops its compiled CSS.
   screenshots come out blank. That is a capture artifact, not a bug; verify in a real browser.
 - `scripts/make-relative.mjs` — postbuild; rewrites exported asset paths relative (depth-aware)
   so any single out/ page renders when opened via file://. Cross-page nav still needs HTTP.
+  It rewrites `out/` **in place**, so the build must `rm -rf out` first and move the fresh
+  export there. Skip that and it silently rewrites a leftover `out/` from an older build —
+  the build reports success and you deploy stale content. That shipped once; don't undo it.
 - `public/headshot.jpg` and `public/resume.pdf` are **gitignored on purpose** (personal
   assets, scrubbed from history 2026-07-07). They deploy via CLI upload but never reach
   GitHub. On a fresh clone, copy them in before deploying:

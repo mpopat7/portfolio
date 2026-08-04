@@ -6,7 +6,7 @@
     "predev": "rm -rf .next",
     "dev": "next dev",
     "check": "tsc --noEmit",
-    "build": "NEXT_BUILD_DIR=.next-build next build && node scripts/make-relative.mjs",
+    "build": "rm -rf out .next-build && NEXT_BUILD_DIR=.next-build next build && mv .next-build out && node scripts/make-relative.mjs",
     "start": "next start"
   },
   "dependencies": {
