@@ -84,6 +84,8 @@ export const toolGroups: ToolGroup[] = [
   {
     title: "Analytics & Data",
     items: [
+      "pandas",
+      "NumPy",
       "Excel (Power Query, VBA)",
       "Power BI",
       "Looker Studio",
