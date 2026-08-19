@@ -337,7 +337,7 @@ export const leadership: ListSectionContent = {
       note: "Excel and Access lab tutor for a 30-student honors section.",
     },
     {
-      title: "Business Analytics Club at Kelley",
+      title: "Vice President of Operations, Business Analytics Club at Kelley",
       note: "Analytical models and automated insights with advanced Excel, Python, and generative AI tools.",
     },
     {
