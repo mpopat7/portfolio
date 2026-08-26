@@ -82,13 +82,16 @@ export const toolGroups: ToolGroup[] = [
     items: ["Python", "SQL", "TypeScript", "JavaScript", "Java", "HTML/CSS"],
   },
   {
-    title: "Analytics & Data",
+    title: "Analytics & Business Tools",
     items: [
       "pandas",
       "NumPy",
       "Excel (Power Query, VBA)",
+      "Tableau",
       "Power BI",
       "Looker Studio",
+      "PowerPoint",
+      "Word",
       "Google Sheets",
     ],
   },

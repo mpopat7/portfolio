@@ -1,4 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#060505"/>
-  <text x="32" y="42" font-family="ui-monospace, monospace" font-size="28" font-weight="700" fill="#f4f1ea" text-anchor="middle">M<tspan fill="#ff5c38">.</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- Pixel grass block, drawn to match the site's palette. -->
+  <rect width="16" height="16" fill="#6b4d35"/>
+  <rect x="0" y="0" width="16" height="5" fill="#5b9b3e"/>
+  <rect x="2" y="4" width="2" height="1" fill="#4d8534"/>
+  <rect x="7" y="4" width="3" height="1" fill="#4d8534"/>
+  <rect x="12" y="3" width="2" height="2" fill="#4d8534"/>
+  <rect x="1" y="1" width="3" height="1" fill="#6fb04a"/>
+  <rect x="9" y="1" width="4" height="1" fill="#6fb04a"/>
+  <rect x="3" y="7" width="2" height="2" fill="#5f452f"/>
+  <rect x="10" y="9" width="3" height="2" fill="#5f452f"/>
+  <rect x="6" y="12" width="2" height="2" fill="#7d5a3e"/>
+  <rect x="1" y="11" width="2" height="1" fill="#7d5a3e"/>
+  <rect x="12" y="6" width="2" height="1" fill="#7d5a3e"/>
 </svg>

@@ -1,14 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import Backdrop from "@/components/ui/Backdrop";
+import Backdrop from "@/components/mc/Backdrop";
+import CornerControls from "@/components/mc/CornerControls";
 import { site } from "@/data/content";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+// Monocraft (SIL OFL 1.1) — a Minecraft-styled pixel face that is free to
+// redistribute. Mojang's own font is not, so it is deliberately not used.
+const mc = localFont({
+  src: "../public/fonts/Monocraft.ttf",
+  variable: "--font-mc",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: site.title,
@@ -16,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#060505",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -25,16 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
-      <body className="bg-night font-sans text-paper antialiased">
+    <html lang="en" className={`${mc.variable} h-full`}>
+      <body className="h-full font-mc antialiased">
         <Backdrop />
-        <SmoothScroll>
-          <div className="relative z-10">
-            <Nav />
-            <main className="pt-16">{children}</main>
-            <Footer />
-          </div>
-        </SmoothScroll>
+        {children}
+        <CornerControls />
       </body>
     </html>
   );

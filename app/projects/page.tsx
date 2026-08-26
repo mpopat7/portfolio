@@ -1,8 +1,12 @@
-import type { Metadata } from "next";
-import Projects from "@/components/sections/Projects";
+import Screen from "@/components/mc/Screen";
+import ProjectList from "@/components/mc/ProjectList";
 
-export const metadata: Metadata = { title: "Projects · Milen Popat" };
+export const metadata = { title: "Projects — Milen Popat" };
 
 export default function ProjectsPage() {
-  return <Projects />;
+  return (
+    <Screen title="Select Project" maxWidth="100%">
+      <ProjectList />
+    </Screen>
+  );
 }
