@@ -38,6 +38,17 @@ export const hero = {
 
 export type TextSegment = { text: string; accent?: boolean };
 
+// Annotated rather than `satisfies`-checked: with no accented segment present,
+// inference narrows to `{ text: string }` and the renderer's `seg.accent` stops
+// compiling. The annotation keeps the accent option available.
+const aboutParagraphs: TextSegment[][] = [
+  [
+    {
+      text: "My name is Milen! I'm a sophomore at Indiana University studying Data Science and Computer Science. One of my main interests is AI and how it's improving the world around us. Outside of school I enjoy music (listening and playing), pickleball, and watching football.",
+    },
+  ],
+];
+
 export const about = {
   photo: "/headshot.jpg",
   facts: [
@@ -46,20 +57,7 @@ export const about = {
     { label: "Studying", value: "Data Science + Computer Science, Indiana University" },
     { label: "Focus", value: "ML, analytics, AI engineering" },
   ],
-  paragraphs: [
-    [
-      { text: "My name is Milen and I grew up in Houston. I got into ML " },
-      { text: "from the business side", accent: true },
-      { text: ": digitizing paperwork for an urgent care clinic, building dashboards for a Google partner, and following the data work " },
-      { text: "until it turned into research", accent: true },
-      { text: "." },
-    ],
-    [
-      { text: "Away from school I produce music in Logic Pro, lift, and " },
-      { text: "live and die with the Detroit Lions", accent: true },
-      { text: "." },
-    ],
-  ] satisfies TextSegment[][],
+  paragraphs: aboutParagraphs,
   now: [
     "Classifying neuromuscular disease from smartphone video in the Algoverse fellowship",
     "Dashboards and ETL across 650+ client domains at HiView Solutions",
