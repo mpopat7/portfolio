@@ -76,6 +76,14 @@ export default function AboutPage() {
               >
                 {site.email}
               </McButton>
+              <McButton
+                href={`mailto:${site.emailPersonal}`}
+                small
+                external
+                className="w-full"
+              >
+                {site.emailPersonal}
+              </McButton>
             </div>
           </aside>
 

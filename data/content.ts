@@ -9,6 +9,7 @@ export const site = {
   description:
     "Portfolio of Milen Popat: ML research, applied data work, and AI tools. Data Science and Computer Science at Indiana University Bloomington.",
   email: "mpopat@iu.edu",
+  emailPersonal: "milenpopat@gmail.com",
   github: "https://github.com/mpopat7",
   linkedin: "https://www.linkedin.com/in/milenpopat",
   resume: "/resume.pdf",
