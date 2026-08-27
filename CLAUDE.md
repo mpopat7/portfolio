@@ -103,3 +103,36 @@ trust it. Measure instead: load the page in a fixed-width iframe and compare
 - Ship an update: commit, `git push`, then `vercel --prod --yes` from the project
   root (deploys are CLI-triggered, **not** git-triggered, so pushing alone never
   changes the live site). `vercel.json` serves the static export from `out/`.
+
+### First deploy from a new machine — link before you deploy
+
+`.vercel/` is gitignored, so a fresh clone has **no project link**, and Vercel
+auth is per-machine on top of that. Without the link `vercel --prod` has no
+target: it exits without deploying rather than guessing, and the live site
+silently stays on the old build. That happened on 2026-08-26 and read exactly
+like "logged into the wrong account" — it wasn't; `vercel whoami` was correct
+and `vercel projects ls` listed `portfolio` the whole time. The tell is the
+**newest production deployment being days old** in `vercel ls`.
+
+```bash
+vercel login
+vercel link --project portfolio --yes   # name it — a bare --yes can create a NEW project on a NEW URL
+vercel --prod --yes
+```
+
+Naming the project matters more than it looks: the failure mode of getting it
+wrong is a second project on a different hostname, which breaks every résumé and
+application already carrying the current link.
+
+`vercel link` also writes a **`.env.local`** containing a `VERCEL_OIDC_TOKEN`
+and adds it to `.gitignore` itself. That's a live credential — leave it
+untracked, never force-add it.
+
+Verify a deploy actually landed rather than trusting the CLI's success line:
+
+```bash
+curl -s "https://milenpopat.vercel.app/?cb=$RANDOM" | grep -c Mojang   # 1 = new site is live
+```
+
+Check `/headshot.jpg` and `/resume.pdf` return 200 too — both are gitignored and
+travel only in the CLI upload, so they are the first things to go missing.
