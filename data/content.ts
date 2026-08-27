@@ -39,8 +39,6 @@ export const hero = {
 export type TextSegment = { text: string; accent?: boolean };
 
 export const about = {
-  heading:
-    "I got into ML from the business side, and stayed for the build.",
   photo: "/headshot.jpg",
   facts: [
     { label: "Based in", value: "Houston, TX" },

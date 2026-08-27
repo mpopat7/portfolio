@@ -86,9 +86,6 @@ export default function AboutPage() {
               aria-label="Biography"
               style={{ textShadow: "2px 2px 0 #252525" }}
             >
-              <h2 className="m-0 mb-3 text-lg leading-snug text-white sm:text-xl">
-                {about.heading}
-              </h2>
               {about.paragraphs.map((para, i) => (
                 <p
                   key={i}
