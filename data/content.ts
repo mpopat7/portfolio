@@ -60,7 +60,7 @@ export const about = {
   ],
   paragraphs: aboutParagraphs,
   now: [
-    "Classifying neuromuscular disease from smartphone video in the Algoverse fellowship",
+    "Optimizing radiotherapy beam angles with genetic algorithms in the Algoverse fellowship",
     "Dashboards and ETL across 650+ client domains at HiView Solutions",
     "Building a multi-agent license compliance auditor with LangGraph",
   ],
@@ -178,13 +178,13 @@ export const featuredProjects: FeaturedProject[] = [
 ];
 
 export const researchFeature = {
-  sub: "Fellowship research in progress, aimed at a top ML conference.",
+  sub: "Fellowship research on genetic algorithms for radiotherapy planning.",
   label: "Algoverse AI Research Fellowship · 2026",
-  title: "Classifying neuromuscular disease from smartphone video",
-  meta: "12-week conference-paper cohort · in progress",
+  title: "Optimizing radiotherapy beam angles with genetic algorithms",
+  meta: "37-patient PortPy study · manuscript in preparation",
   description:
-    "A pipeline that reconstructs 3D joint kinematics from smartphone video with OpenCap, then engineers interpretable movement features across 129 subjects and 9 clinical tasks. Preliminary benchmarks reach 82% accuracy against 50% for standard clinical timed tests.",
-  pipeline: ["smartphone video", "OpenCap 3D kinematics", "movement features", "classifier"],
+    "A genetic algorithm for seven-beam radiotherapy planning on PortPy's lung-cancer benchmark. Across 37 patients, it beat clinician-selected beam configurations in 30 cases with 12.14% lower mean objective cost, cutting tumor underdose and overdose penalties 49% and 47% and fluence-smoothness penalty 22%.",
+  pipeline: ["PortPy patient data", "genetic beam search", "full-resolution rescoring", "cohort analysis"],
 };
 
 export type MoreProject = {
