@@ -278,7 +278,7 @@ export const work = {
 
 export const education = {
   school: "Indiana University Bloomington",
-  degree: "Bachelor of Science in Data Science and Computer Science",
+  degree: "Bachelor of Science in Data Science and Computer Science, Minor in Business",
   meta: "Bloomington, IN · GPA 3.81 / 4.00",
   dates: "Expected May 2029",
 };
