@@ -60,7 +60,7 @@ export const projectEntries: ProjectEntry[] = [
     level: 2 as const,
     blurb: researchFeature.description,
     tech: researchFeature.pipeline,
-    github: "",
+    github: "https://github.com/algoverse-agatha-rmcj/algoverse-portpy-beam-optimization",
     sigil: "AL",
   },
   ...moreProjects.map((p) => ({
