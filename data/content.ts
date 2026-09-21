@@ -60,7 +60,7 @@ export const about = {
   ],
   paragraphs: aboutParagraphs,
   now: [
-    "Optimizing radiotherapy beam angles with genetic algorithms in the Algoverse fellowship",
+    "Accepted into the JPMorganChase Career.edYOU Academy",
     "Dashboards and ETL across 650+ client domains at HiView Solutions",
     "Building a multi-agent license compliance auditor with LangGraph",
   ],
@@ -185,12 +185,12 @@ export const featuredProjects: FeaturedProject[] = [
 ];
 
 export const researchFeature = {
-  sub: "Fellowship research on genetic algorithms for radiotherapy planning.",
+  sub: "Completed fellowship research on genetic algorithms for radiotherapy planning.",
   label: "Algoverse AI Research Fellowship · 2026",
   title: "Optimizing radiotherapy beam angles with genetic algorithms",
   meta: "37-patient PortPy study · manuscript in preparation",
   description:
-    "A genetic algorithm for seven-beam radiotherapy planning on PortPy's lung-cancer benchmark. Across 37 patients, it beat clinician-selected beam configurations in 30 cases with 12.14% lower mean objective cost, cutting tumor underdose and overdose penalties 49% and 47% and fluence-smoothness penalty 22%.",
+    "Completed during the Algoverse AI Research Fellowship: a genetic algorithm for seven-beam radiotherapy planning on PortPy's lung-cancer benchmark. Across 37 patients, it beat clinician-selected beam configurations in 30 cases with 12.14% lower mean objective cost, cutting tumor underdose and overdose penalties 49% and 47% and fluence-smoothness penalty 22%.",
   pipeline: ["PortPy patient data", "genetic beam search", "full-resolution rescoring", "cohort analysis"],
 };
 
@@ -338,6 +338,10 @@ export const leadership: ListSectionContent = {
     {
       title: "Goldman Sachs Possibilities Series",
       note: "Selected for the competitive first-year career program.",
+    },
+    {
+      title: "JPMorganChase Career.edYOU Academy",
+      note: "Selected and accepted into the 2026 early-career cohort.",
     },
     {
       title: "K204 Peer Tutor, Kelley School of Business",
