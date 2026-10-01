@@ -15,7 +15,7 @@ const LINES = [
   "Go Lions!",
   "Ask me about RAG!",
   "Compiles on the first try!",
-  "Made in Houston!",
+  "Made in Richmond!",
   "pandas, capital P!",
   "Powered by too much coffee!",
   "Ship it!",

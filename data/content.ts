@@ -53,7 +53,7 @@ const aboutParagraphs: TextSegment[][] = [
 export const about = {
   photo: "/headshot.jpg",
   facts: [
-    { label: "Based in", value: "Houston, TX" },
+    { label: "Based in", value: "Richmond, TX" },
     { label: "Currently", value: "Data Analyst Intern at HiView Solutions" },
     { label: "Studying", value: "Data Science + Computer Science, Indiana University" },
     { label: "Focus", value: "ML, analytics, AI engineering" },
@@ -364,6 +364,6 @@ export const contact = {
 };
 
 export const footer = {
-  role: "Builder, Houston, Texas",
+  role: "Builder, Richmond, Texas",
   note: "Designed and built from scratch.",
 };
