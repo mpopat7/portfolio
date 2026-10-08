@@ -97,7 +97,6 @@ export const toolGroups: ToolGroup[] = [
     items: [
       "PyTorch",
       "scikit-learn",
-      "Transformers",
       "ColQwen2",
       "LangGraph",
       "Qdrant",
@@ -110,7 +109,6 @@ export const toolGroups: ToolGroup[] = [
     title: "Infra & Shipping",
     items: [
       "Docker",
-      "Kubernetes",
       "Linux",
       "Ollama",
       "Raspberry Pi 5",
@@ -118,7 +116,6 @@ export const toolGroups: ToolGroup[] = [
       "n8n",
       "Next.js",
       "FastAPI",
-      "Vercel",
       "Git",
     ],
   },
