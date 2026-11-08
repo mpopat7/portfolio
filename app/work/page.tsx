@@ -83,7 +83,9 @@ export default function WorkPage() {
                     />
                     <span>
                       {c.name}
-                      <span className="text-neutral-400"> · {c.issuer}</span>
+                      {c.issuer && (
+                        <span className="text-neutral-400"> · {c.issuer}</span>
+                      )}
                     </span>
                   </li>
                 ))}

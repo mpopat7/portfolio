@@ -60,9 +60,9 @@ export const about = {
   ],
   paragraphs: aboutParagraphs,
   now: [
-    "Accepted into the JPMorganChase Career.edYOU Academy",
-    "Dashboards and ETL across 650+ client domains at HiView Solutions",
-    "Building a multi-agent license compliance auditor with LangGraph",
+    "Building and evaluating next-month MLB pitcher forecasts with public Statcast data",
+    "Python ETL and annual contract value reconciliation at HiView Solutions",
+    "Continuing the PortPy radiotherapy research with the Algoverse team",
   ],
 };
 
@@ -81,7 +81,7 @@ export const toolGroups: ToolGroup[] = [
   {
     title: "Analytics & Business Tools",
     items: [
-      "pandas",
+      "Pandas",
       "NumPy",
       "Excel (Power Query, VBA)",
       "Tableau",
@@ -115,6 +115,7 @@ export const toolGroups: ToolGroup[] = [
       "SSH & networking",
       "n8n",
       "Next.js",
+      "React",
       "FastAPI",
       "Git",
     ],
@@ -142,6 +143,21 @@ export const projectsIntro = {
 
 export const featuredProjects: FeaturedProject[] = [
   {
+    name: "Pitcher Change Forecaster",
+    year: "2026",
+    status: "Study evaluated",
+    url: "github.com/mpopat7/pitcher-change-forecaster",
+    tagline: "Testing whether pitch changes improve next-month forecasts",
+    description:
+      "A forecasting study using 3.8 million Statcast pitches to compare recent results, current pitch characteristics, and changes in a pitcher's repertoire. Evaluated a frozen model on the 2025 season: current pitch measurements modestly improved strikeout forecasts, while recent-change features added no reliable forecasting benefit. Includes a historical browser for 13,591 eligible forecasts across 2024 and 2025, with model comparisons and experimental alert outcomes.",
+    tech: ["Python", "Pandas", "scikit-learn", "Statcast"],
+    github: "https://github.com/mpopat7/pitcher-change-forecaster",
+    stats: [
+      { value: "3.8M", label: "pitches audited" },
+      { value: "13,591", label: "historical forecasts" },
+    ],
+  },
+  {
     name: "Multimodal RAG",
     year: "2026",
     status: "Benchmarked & shipped",
@@ -159,11 +175,11 @@ export const featuredProjects: FeaturedProject[] = [
   {
     name: "License Compliance Auditor",
     year: "2026",
-    status: "In progress",
+    status: "Prototype",
     url: "github.com/mpopat7/license-compliance-auditor",
     tagline: "AI agents that audit a dependency tree for license risk",
     description:
-      "🚧 In progress — multi-agent auditor that detects/classifies OSS licenses in a repo and flags obligation conflicts (SPDX-matrix reasoning + LLM extraction)",
+      "A prototype for auditing open-source licenses in a repository. Built repository ingestion, license-source detection, and structured LLM extraction; classification and obligation-conflict reasoning are planned.",
     tech: ["LangGraph", "Qdrant", "LiteLLM", "Python"],
     github: "https://github.com/mpopat7/license-compliance-auditor",
   },
@@ -248,8 +264,8 @@ export const work = {
       summary:
         "Analytics for a Google Premier Partner serving 650+ Workspace clients.",
       bullets: [
-        "Design and build live dashboards analyzing customer renewal data across 650+ clients and $220K in quarterly revenue.",
-        "Built Python ETL pipelines through the Apollo API to track tech adoption, and prototyped a Gemini-powered Slack agent that automates reminders, drafts, and follow-ups.",
+        "Built Python ETL pipelines across 650+ client domains using Apollo API to track technology adoption; prototyped a Gemini Enterprise Slack agent for renewal reminders, draft follow-ups, and CRM synchronization.",
+        "Developed Python reconciliation tools for Google partner annual contract value (ACV), identifying $347K in renewal-credit increases across 1,440 existing bookings and 144 customers, alongside $336K in New & Expansion reductions.",
       ],
     },
     {
@@ -287,9 +303,10 @@ export const education = {
   dates: "Expected May 2029",
 };
 
-export type Certification = { name: string; issuer: string };
+export type Certification = { name: string; issuer?: string };
 
 export const certifications: Certification[] = [
+  { name: "Claude Certified Architect" },
   { name: "Microsoft Office Specialist (Word, Excel, PowerPoint, Access)", issuer: "Microsoft" },
   { name: "Investment Banking Virtual Experience", issuer: "J.P. Morgan (Forage)" },
   { name: "AI in Business", issuer: "Wharton School, UPenn" },
@@ -338,7 +355,7 @@ export const leadership: ListSectionContent = {
     },
     {
       title: "JPMorganChase Career.edYOU Academy",
-      note: "Selected and accepted into the 2026 early-career cohort.",
+      note: "Participated in the 2026 cohort, learning about the recruiting pipeline and roles across the firm and networking with employees.",
     },
     {
       title: "K204 Peer Tutor, Kelley School of Business",
