@@ -138,7 +138,7 @@ export type FeaturedProject = {
 
 export const projectsIntro = {
   heading: "Things I've built, end to end.",
-  sub: "RAG systems, agent pipelines, and a deployed AI web app, each one shipped and documented. Open the source for the full story.",
+  sub: "A trading simulator, RAG systems, and agent pipelines, each one shipped and documented. Open the source for the full story.",
 };
 
 export const featuredProjects: FeaturedProject[] = [
@@ -184,16 +184,19 @@ export const featuredProjects: FeaturedProject[] = [
     github: "https://github.com/mpopat7/license-compliance-auditor",
   },
   {
-    name: "SNAP Notice Navigator",
+    name: "Market Making Simulator",
     year: "2026",
-    status: "Live on Vercel",
-    url: "snap-notice-navigator.vercel.app",
-    tagline: "Plain-language help for confusing benefit letters",
+    status: "Results published",
+    url: "github.com/mpopat7/market-making-simulator",
+    tagline: "Measuring how much a backtest's fill assumptions distort a trading strategy",
     description:
-      "An AI web app that explains SNAP benefit notices in plain language and produces a source-backed, deadline-aware checklist of next steps. Built for the USAII Global AI Hackathon with responsible-AI guardrails: hedged wording, human-in-the-loop review, no automated eligibility decisions, and cited official sources.",
-    tech: ["Next.js", "TypeScript", "Claude API", "Vercel"],
-    github: "https://github.com/mpopat7/snap-notice-navigator",
-    demo: "https://snap-notice-navigator.vercel.app",
+      "A Python limit order book with price-time priority, partial fills, cancellations, and deterministic replay, used as the reference engine for a market-making study. Compared simplified fill models against it across 200 seeds and 9 synthetic market conditions under a frozen experiment spec: fill-on-touch backtests roughly doubled the market maker's volume and profit, and a queue-position estimate came within 3 to 13% on volume but always overstated it. No fill model reversed the ranking of inventory-skewed versus fixed quotes.",
+    tech: ["Python", "pytest", "NumPy", "multiprocessing"],
+    github: "https://github.com/mpopat7/market-making-simulator",
+    stats: [
+      { value: "~2x", label: "touch-fill profit inflation" },
+      { value: "200", label: "seeds per setting" },
+    ],
   },
 ];
 
@@ -215,6 +218,13 @@ export type MoreProject = {
 };
 
 export const moreProjects: MoreProject[] = [
+  {
+    name: "SNAP Notice Navigator",
+    tagline:
+      "AI web app that explains SNAP benefit letters in plain language with a cited, deadline-aware checklist. Live on Vercel.",
+    tech: ["Next.js", "TypeScript", "Claude API"],
+    github: "https://github.com/mpopat7/snap-notice-navigator",
+  },
   {
     name: "Local LLM Hallucination Eval",
     tagline:
